@@ -1,0 +1,31 @@
+<div class="row">
+  <mat-spinner *ngIf="!news"></mat-spinner>
+  <div
+    class="col-xs-12 col-sm-6 col-md-4 col-lg-3 mt-10"
+    *ngFor="let article of news?.articles"
+  >
+    <mat-card>
+      <img
+        mat-card-image
+        *ngIf="article.urlToImage"
+        [src]="article.urlToImage"
+        alt=""
+      />
+      <mat-card-header>
+        <mat-card-title>{{ article.title }}.</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ article.content }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="onFavorite(article)">Favorite</button>
+        <button mat-button>Read More</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+<mat-paginator
+  [length]="length"
+  [pageSize]="pageSize"
+  (page)="onPageChange($event)"
+></mat-paginator>
